@@ -72,7 +72,6 @@ public class Board {
 
     public Move move(int star_row, int star_col, int end_row, int end_col) {
         Piece p = this.cells[star_row][star_col].getPiece();
-
         Move m = null;
         if (p != null) {
             m = p.move(this, end_row, end_col);
