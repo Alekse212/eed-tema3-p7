@@ -33,25 +33,25 @@ public class Board {
                 this.cells[i][j] = new Cell(i, j);
             }
         }
-        this.cells[0][0].setPiece(new Knight(0, 1, PieceType.Black, true,"1"));
-        this.cells[0][1].setPiece(new Rook(0, 0, PieceType.Black, true,"1"));
+        this.cells[0][1].setPiece(new Knight(0, 1, PieceType.Black, true,"1"));
+        this.cells[0][0].setPiece(new Rook(0, 0, PieceType.Black, true,"1"));
         this.cells[0][2].setPiece(new Bishop(0, 2, PieceType.Black, true,"1"));
         this.cells[0][3].setPiece(new Queen(0, 3, PieceType.Black, true,"1"));
         this.kingBlack=new King(0, 4, PieceType.Black, true,"1");
         this.cells[0][4].setPiece(this.kingBlack);
         this.cells[0][5].setPiece(new Bishop(0, 5, PieceType.Black, true,"2"));
-        this.cells[0][6].setPiece(new Rook(0, 7, PieceType.Black, true,"2"));
-        this.cells[0][7].setPiece(new Knight(0, 6, PieceType.Black, true,"2"));
+        this.cells[0][7].setPiece(new Rook(0, 7, PieceType.Black, true,"2"));
+        this.cells[0][6].setPiece(new Knight(0, 6, PieceType.Black, true,"2"));
 
-        this.cells[7][0].setPiece(new Knight(7, 1, PieceType.White, true,"1"));
-        this.cells[7][1].setPiece(new Rook(7, 0, PieceType.White, true,"1"));
+        this.cells[7][1].setPiece(new Knight(7, 1, PieceType.White, true,"1"));
+        this.cells[7][0].setPiece(new Rook(7, 0, PieceType.White, true,"1"));
         this.cells[7][2].setPiece(new Bishop(7, 2, PieceType.White, true,"1"));
         this.cells[7][3].setPiece(new Queen(7, 3, PieceType.White, true,"1"));
         this.kingWhite= new King(7, 4, PieceType.White, true,"1");
         this.cells[7][4].setPiece(this.getKingWhite());
         this.cells[7][5].setPiece(new Bishop(7, 5, PieceType.White, true,"2"));
-        this.cells[7][6].setPiece(new Rook(7, 7, PieceType.White, true,"2"));
-        this.cells[7][7].setPiece(new Knight(70, 6, PieceType.White, true,"2"));
+        this.cells[7][7].setPiece(new Rook(7, 7, PieceType.White, true,"2"));
+        this.cells[7][6].setPiece(new Knight(7, 6, PieceType.White, true,"2"));
         for (int i = 0; i < this.cells[1].length ; i++) {
             this.cells[1][i].setPiece(new Pawn(1, i, PieceType.Black, true,String.valueOf(i)));
             this.cells[6][i].setPiece(new Pawn(6, i, PieceType.White, true,String.valueOf(i)));
@@ -59,7 +59,10 @@ public class Board {
     }
 
     public Cell getCell(int row, int col) {
-        return this.cells[row][col];
+        if(row >= 0 && row <= 7 && col >= 0 && col <= 7) {
+            return this.cells[row][col];
+        }
+        return null;
     }
 
     public int getHeight() {
@@ -71,6 +74,9 @@ public class Board {
     }
 
     public Move move(int star_row, int star_col, int end_row, int end_col) {
+        if((star_col < 0 || star_col > 7) || (end_col < 0 || end_col > 7) || (star_row < 0 || star_row > 7) || (end_row < 0 || end_row > 7)) {
+            return null;
+        }
         Piece p = this.cells[star_row][star_col].getPiece();
         Move m = null;
         if (p != null) {

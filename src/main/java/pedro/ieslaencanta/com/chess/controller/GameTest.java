@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GameTest {
     private Game g;
-    private Board b;
+
     @BeforeEach
     void setUp() {
         this.g = new Game();
